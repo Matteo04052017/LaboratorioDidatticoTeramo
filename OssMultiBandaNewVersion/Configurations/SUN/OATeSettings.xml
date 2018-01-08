@@ -1,0 +1,14 @@
+<OATeSettings Camera1="OEM Device" Camera2="Integrated Webcam" Barra="SUN/Spettro.png" Puntatore="SUN/Puntatore.png" xmlns="clr-namespace:OssMultiBanda;assembly=OssMultiBanda"  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<OATeSettings.MediaFiles>
+<scg:List x:TypeArguments="OATeMedia" Capacity="16">
+<OATeMedia FromValue="0" 	 ToValue="0.25"		MediaUri="SUN/radio.jpg"	/>
+<OATeMedia FromValue="0.26"  ToValue="0.40" 	MediaUri="SUN/mm.jpg" 		/>
+<OATeMedia FromValue="0.41"  ToValue="0.44"		MediaUri="SUN/ir.gif"		/>
+<OATeMedia FromValue="0.45"  ToValue="0.49" 	MediaUri="SUN/visibile.jpg" />
+<OATeMedia FromValue="0.50"  ToValue="0.59" 	MediaUri="SUN/uv0.jpg" 		/>
+<OATeMedia FromValue="0.60"  ToValue="0.69" 	MediaUri="SUN/uv1.jpg" 		/>
+<OATeMedia FromValue="0.70"  ToValue="0.80" 	MediaUri="SUN/uv-x.jpg"		/>
+</scg:List>
+</OATeSettings.MediaFiles>
+</OATeSettings>
+

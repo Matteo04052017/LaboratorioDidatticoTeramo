@@ -1,0 +1,17 @@
+﻿<Window x:Class="OssMultiBanda.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:k="http://schemas.microsoft.com/kinect/2013"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OssMultiBanda"
+        Title="Osservazioni Multi Banda"
+        KeyUp="Window_KeyUp" KeyDown="Window_KeyDown" 
+        mc:Ignorable="d"
+        FontFamily="Segoe UI" Height="150" Width="1024" WindowStyle="None" Closing="Window_Closing" Loaded="Window_Loaded">
+    <Grid x:Name="LayoutRoot">
+        <Border x:Name="border_barra">
+            <local:AdaptiveZoneVisualizer x:Name="UserStateVisualizer" Height="150"></local:AdaptiveZoneVisualizer>
+        </Border>
+    </Grid>
+</Window>

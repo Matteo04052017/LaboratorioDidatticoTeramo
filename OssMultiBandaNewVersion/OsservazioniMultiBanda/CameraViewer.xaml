@@ -1,0 +1,11 @@
+﻿<Window x:Class="OssMultiBanda.CameraViewer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cap="http://schemas.sharpsoft.net/xaml"
+        xmlns:l="clr-namespace:OssMultiBanda" 
+        Title="Camera View" Background="Black" WindowStyle="None" WindowStartupLocation="Manual">
+   
+    <Grid Name="LayoutRoot">
+        <Image Grid.Column="0" Name="camera1"></Image>
+    </Grid>
+</Window>

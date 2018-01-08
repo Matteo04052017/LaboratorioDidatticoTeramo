@@ -1,0 +1,15 @@
+<OATeSettings Barra="ConfigEsempio/Spettro.png" Puntatore="ConfigEsempio/Puntatore.png" xmlns="clr-namespace:OssMultiBanda;assembly=OssMultiBanda"  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<OATeSettings.MediaFiles>
+<scg:List x:TypeArguments="OATeMedia" Capacity="16">
+<OATeMedia FromValue="0.15" MediaUri="ConfigEsempio/A.png" ToValue="0.25" />
+<OATeMedia FromValue="0.25" MediaUri="ConfigEsempio/B.png" ToValue="0.33" />
+<OATeMedia FromValue="0.33" MediaUri="ConfigEsempio/C.png" ToValue="0.42" />
+<OATeMedia FromValue="0.42" MediaUri="ConfigEsempio/D.png" ToValue="0.50" />
+<OATeMedia FromValue="0.50" MediaUri="ConfigEsempio/E.png" ToValue="0.59" />
+<OATeMedia FromValue="0.59" MediaUri="ConfigEsempio/F.png" ToValue="0.67" />
+<OATeMedia FromValue="0.67" MediaUri="ConfigEsempio/G.png" ToValue="0.76" />
+<OATeMedia FromValue="0.76" MediaUri="ConfigEsempio/H.png" ToValue="0.85" />
+</scg:List>
+</OATeSettings.MediaFiles>
+</OATeSettings>
+
