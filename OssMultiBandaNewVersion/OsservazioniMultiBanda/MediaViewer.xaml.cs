@@ -95,42 +95,35 @@ namespace OssMultiBanda
                 Storyboard animation = new Storyboard();
                 DoubleAnimation closeAnim = null;
                 DoubleAnimation openAnim = null;
-
+                bool anim = false;
                 foreach (var single_media_to_close in media_to_close)
                 {
                     if (single_media_to_close != null &&
+                        single_media_to_close.Opacity > 0d &&
                     (media_to_open != single_media_to_close || media_to_open == null))
                     {
                         closeAnim = new DoubleAnimation(1d, 0d, new Duration(new TimeSpan(0, 0, 1)));
                         Storyboard.SetTarget(closeAnim, single_media_to_close);
                         Storyboard.SetTargetProperty(closeAnim, new PropertyPath(MediaElement.OpacityProperty));
+                        animation.Children.Add(closeAnim);
+                        anim = true;
                     }
                 }
                 
 
-                if (media_to_open != null && 
+                if (media_to_open != null &&
+                    media_to_open.Opacity < 1d &&
                     media_to_open != last_media_shown)
                 {
                     openAnim = new DoubleAnimation(0d, 1d, new Duration(new TimeSpan(0, 0, 1)));
-                    openAnim.Completed += animation_Completed;
+                    //openAnim.Completed += animation_Completed;
                     Storyboard.SetTarget(openAnim, media_to_open);
                     Storyboard.SetTargetProperty(openAnim, new PropertyPath(MediaElement.OpacityProperty));
-                    
+                    animation.Children.Add(openAnim);
+                    anim = true;
                 }
 
                 last_media_shown = media_to_open;
-
-                bool anim = false;
-                if (closeAnim != null)
-                {
-                    anim = true;
-                    animation.Children.Add(closeAnim);
-                }
-                if (openAnim != null)
-                {
-                    anim = true;
-                    animation.Children.Add(openAnim);
-                }
 
                 if (anim)
                     animation.Begin();
@@ -192,7 +185,7 @@ namespace OssMultiBanda
             foreach (var item in _OATeSettings.MediaFiles)
             {
                 MediaElement mediaElem = (item.MediaElement as MediaElement);
-                if (mediaElem.Opacity > 0d)
+                if ( mediaElem.Opacity > 0d)
                     return true;
             }
             return false;
@@ -203,11 +196,10 @@ namespace OssMultiBanda
             foreach (var item in _OATeSettings.MediaFiles)
             {
                 MediaElement element = (item.MediaElement as MediaElement);
-                if (element.Opacity == 1d)
-                { 
+                if (element == last_media_shown && element.Opacity == 1d)
                     element.Play();
-                    break;
-                }
+                else
+                    element.Opacity = 0d;
             }
         }
     }
