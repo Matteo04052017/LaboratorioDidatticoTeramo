@@ -59,6 +59,10 @@ namespace OssMultiBanda
             mediaElem.Opacity = 0;
             mediaElem.Source = new Uri(item.MediaUri, UriKind.RelativeOrAbsolute);
             mediaElem.Name = "MediaElement_" + LayoutRoot.Children.Count + 1;
+
+            if (!System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory() + "/" + item.MediaUri))
+                throw new Exception("Not existing media: " + item.MediaUri.ToString());
+
             LayoutRoot.Children.Add(mediaElem);
             item.MediaElement = mediaElem;
         }
