@@ -1,15 +1,16 @@
-<OATeSettings Barra="spettro.png" Puntatore="Puntatore.png" xmlns="clr-namespace:OssMultiBanda;assembly=OssMultiBanda"  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<OATeSettings Barra="spettro.png" Puntatore="Puntatore.png" xmlns="clr-namespace:OssMultiBanda;assembly=OssMultiBanda" Step="10" AnimationMilliseconds="300" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 <OATeSettings.MediaFiles>
 <scg:List x:TypeArguments="OATeMedia" Capacity="16">
 <OATeMedia FromValue="0" ToValue="0.07" MediaUri="CRAB/crab_radio.jpg" />
 <OATeMedia FromValue="0.07" ToValue="0.14" MediaUri="CRAB/crab_radio_lg.jpg" />
 <OATeMedia FromValue="0.14" MediaUri="CRAB/microwave.png" ToValue="0.34" />
-<OATeMedia FromValue="0.35" ToValue="0.40" MediaUri="CRAB/crab_infrared_lg.jpg" />
-<OATeMedia FromValue="0.40" ToValue="0.47" MediaUri="CRAB/infrarosso.jpg" />
-<OATeMedia FromValue="0.47" ToValue="0.51" MediaUri="CRAB/crab_vis.jpg" />
-<OATeMedia FromValue="0.51" ToValue="0.57" MediaUri="CRAB/crab_fuv.gif" />
-<OATeMedia FromValue="0.57" ToValue="0.63" MediaUri="CRAB/CrabNebula-ChandraX-raysPulsar.jpg" />
-<OATeMedia FromValue="0.63" ToValue="0.78" MediaUri="CRAB/crab-x.jpg" />
+<OATeMedia FromValue="0.34" ToValue="0.41" MediaUri="CRAB/crab_infrared_lg.jpg" />
+<OATeMedia FromValue="0.41" ToValue="0.49" MediaUri="CRAB/infrarosso.jpg" />
+<OATeMedia FromValue="0.49" ToValue="0.507" MediaUri="CRAB/crab_vis.jpg" />
+<OATeMedia FromValue="0.507" ToValue="0.59" MediaUri="CRAB/crab_fuv.gif" />
+<OATeMedia FromValue="0.59" ToValue="0.69" MediaUri="CRAB/CrabNebula-ChandraX-raysPulsar.jpg" />
+<OATeMedia FromValue="0.69" ToValue="0.79" MediaUri="CRAB/crab-x.jpg" />
+<OATeMedia FromValue="0.79" ToValue="1" MediaUri="CRAB/black.jpg" />
 </scg:List>
 </OATeSettings.MediaFiles>
 </OATeSettings>

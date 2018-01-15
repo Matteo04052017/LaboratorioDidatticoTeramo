@@ -34,6 +34,13 @@ namespace OssMultiBanda
             set { _Step = value; }
         }
 
+        private int _AnimationMilliseconds = 1000;
+        public int AnimationMilliseconds
+        {
+            get { return _AnimationMilliseconds; }
+            set { _AnimationMilliseconds = value; }
+        }
+
         private string _Barra = "Images/spettro.png";
         public string Barra
         {

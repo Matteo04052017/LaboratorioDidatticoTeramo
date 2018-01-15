@@ -1,15 +1,15 @@
-<OATeSettings Camera1="OEM Device" Camera2="Integrated Webcam" Barra="Spettro.png" Puntatore="Puntatore.png" Step="10" xmlns="clr-namespace:OssMultiBanda;assembly=OssMultiBanda"  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<OATeSettings Camera1="OEM Device" Camera2="Integrated Webcam" Barra="Spettro.png" Puntatore="Puntatore.png" Step="10" AnimationMilliseconds="300" xmlns="clr-namespace:OssMultiBanda;assembly=OssMultiBanda"  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 <OATeSettings.MediaFiles>
 <scg:List x:TypeArguments="OATeMedia" Capacity="16">
 <OATeMedia FromValue="0" MediaUri="SUN/radio.jpg" ToValue="0.14" />
 <OATeMedia FromValue="0.14" MediaUri="SUN/mm.jpg" ToValue="0.34" />
-<OATeMedia FromValue="0.34" MediaUri="SUN/ir.gif" ToValue="0.47" />
-<OATeMedia FromValue="0.47" MediaUri="SUN/visibile.jpg" ToValue="0.51" />
-<OATeMedia FromValue="0.51" MediaUri="SUN/uv0.jpg" ToValue="0.54" />
-<OATeMedia FromValue="0.54" MediaUri="SUN/uv1.jpg" ToValue="0.56" />
-<OATeMedia FromValue="0.56" MediaUri="SUN/uv-x.jpg" ToValue="0.57" />
-<OATeMedia FromValue="0.57" MediaUri="SUN/uv2xray.jpg" ToValue="0.69" />
-<OATeMedia FromValue="0.69" MediaUri="SUN/xrays.jpg" ToValue="0.78" />
+<OATeMedia FromValue="0.34" MediaUri="SUN/ir.gif" ToValue="0.49" />
+<OATeMedia FromValue="0.49" MediaUri="SUN/visibile.jpg" ToValue="0.507" />
+<OATeMedia FromValue="0.507" MediaUri="SUN/uv0.jpg" ToValue="0.53" />
+<OATeMedia FromValue="0.53" MediaUri="SUN/uv1.jpg" ToValue="0.56" />
+<OATeMedia FromValue="0.56" MediaUri="SUN/uv-x.jpg" ToValue="0.59" />
+<OATeMedia FromValue="0.59" MediaUri="SUN/uv2xray.jpg" ToValue="0.69" />
+<OATeMedia FromValue="0.69" MediaUri="SUN/xrays.jpg" ToValue="0.79" />
 </scg:List>
 </OATeSettings.MediaFiles>
 </OATeSettings>
