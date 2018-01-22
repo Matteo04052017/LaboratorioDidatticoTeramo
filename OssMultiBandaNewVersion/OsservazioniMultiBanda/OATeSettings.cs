@@ -233,6 +233,6 @@ namespace OssMultiBanda
             set { _PuntatoreSpecifico = value; }
         }
 
-        public object MediaElement { get; set; }
+        public object UI_Element { get; set; }
     }
 }

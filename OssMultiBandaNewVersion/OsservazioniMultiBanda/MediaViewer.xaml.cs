@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -45,36 +46,27 @@ namespace OssMultiBanda
 
         public void AddElement(OATeMedia item)
         {
-            if (item.MediaElement != null)
+            if (item.UI_Element != null)
             {
-                LayoutRoot.Children.Add((MediaElement)item.MediaElement);
+                LayoutRoot.Children.Add((Border)item.UI_Element);
                 return;
             }
-            MediaElement mediaElem = new MediaElement();
-            mediaElem.LoadedBehavior = MediaState.Manual;
-            mediaElem.UnloadedBehavior = MediaState.Stop;
-            //mediaElem.MediaEnded += mediaElem_MediaEnded;
-            mediaElem.Stretch = Stretch.Uniform;
+            Border mediaElem = new Border();
             Grid.SetRow(mediaElem, 1);
             mediaElem.Opacity = 0;
-            mediaElem.Source = new Uri(item.MediaUri, UriKind.RelativeOrAbsolute);
+            mediaElem.Visibility = System.Windows.Visibility.Hidden;
+            BitmapImage source = new BitmapImage(new Uri(item.MediaUri, UriKind.RelativeOrAbsolute));
+            ImageBrush brush = new ImageBrush(source);
+            brush.Stretch = Stretch.Uniform;
+            mediaElem.Background = brush;
             mediaElem.Name = "MediaElement_" + LayoutRoot.Children.Count + 1;
-
             if (!System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory() + "/" + item.MediaUri))
                 throw new Exception("Not existing media: " + item.MediaUri.ToString());
-
             LayoutRoot.Children.Add(mediaElem);
-            item.MediaElement = mediaElem;
+            item.UI_Element = mediaElem;
         }
 
-        //private void mediaElem_MediaEnded(object sender, RoutedEventArgs e)
-        //{
-        //    MediaElement mediaElem = sender as MediaElement;
-        //    mediaElem.Position = new TimeSpan(0, 0, 1);
-        //    mediaElem.Play();
-        //}
-
-        private MediaElement last_media_shown;
+        private Border last_media_shown;
         protected string lock_str = "lock string";
         public void UserStateVisualizer_ValueReached(object sender, ValueEventArgs e)
         {
@@ -82,11 +74,11 @@ namespace OssMultiBanda
             {
                 // find out the new media to open and the old one to close
                 // check if something is open and should not be open
-                MediaElement media_to_open = null;
-                List<MediaElement> media_to_close = new List<MediaElement>();
+                Border media_to_open = null;
+                List<Border> media_to_close = new List<Border>();
                 foreach (var item in _OATeSettings.MediaFiles)
                 {
-                    MediaElement local = (item.MediaElement as MediaElement);
+                    Border local = (item.UI_Element as Border);
                     if (local.Opacity > 0d)
                         media_to_close.Add(local);
                 }
@@ -95,12 +87,12 @@ namespace OssMultiBanda
                 {
                     if (e.Value >= item.FromValue && e.Value < item.ToValue)
                     {
-                        media_to_open = (item.MediaElement as MediaElement);
-                        media_to_open.Play();
+                        media_to_open = (item.UI_Element as Border);
+                        media_to_open.Visibility = System.Windows.Visibility.Visible;
                         break;
                     }
                 }
-                
+
                 Storyboard animation = new Storyboard();
                 DoubleAnimation closeAnim = null;
                 DoubleAnimation openAnim = null;
@@ -112,22 +104,23 @@ namespace OssMultiBanda
                     (media_to_open != single_media_to_close || media_to_open == null))
                     {
                         closeAnim = new DoubleAnimation(1d, 0d, new Duration(new TimeSpan(0, 0, 0, 0, AnimationMilliseconds)));
+                        closeAnim.Completed += animation_Completed;
                         Storyboard.SetTarget(closeAnim, single_media_to_close);
-                        Storyboard.SetTargetProperty(closeAnim, new PropertyPath(MediaElement.OpacityProperty));
+                        Storyboard.SetTargetProperty(closeAnim, new PropertyPath(Border.OpacityProperty));
                         animation.Children.Add(closeAnim);
                         anim = true;
                     }
                 }
-                
+
 
                 if (media_to_open != null &&
                     media_to_open.Opacity < 1d &&
                     media_to_open != last_media_shown)
                 {
                     openAnim = new DoubleAnimation(0d, 1d, new Duration(new TimeSpan(0, 0, 0, 0, AnimationMilliseconds)));
-                    //openAnim.Completed += animation_Completed;
+                    openAnim.Completed += animation_Completed;
                     Storyboard.SetTarget(openAnim, media_to_open);
-                    Storyboard.SetTargetProperty(openAnim, new PropertyPath(MediaElement.OpacityProperty));
+                    Storyboard.SetTargetProperty(openAnim, new PropertyPath(Border.OpacityProperty));
                     animation.Children.Add(openAnim);
                     anim = true;
                 }
@@ -136,56 +129,6 @@ namespace OssMultiBanda
 
                 if (anim)
                     animation.Begin();
-
-/*Storyboard animation = new Storyboard();
-                DoubleAnimation closeAnim = null;
-                DoubleAnimation openAnim = null;
-                 bool found = false;
-                foreach (var item in _OATeSettings.MediaFiles)
-                {
-                    if (e.Value >= item.FromValue && e.Value < item.ToValue)
-                    {
-                        MediaElement to_open_media = (item.MediaElement as MediaElement);
-
-                        if (last_media_shown != to_open_media || !IsAnyMediaOpen())
-                        {
-                            openAnim = new DoubleAnimation(0d, 1d, new Duration(new TimeSpan(0, 0, 1)));
-                            openAnim.Completed += animation_Completed;
-                            Storyboard.SetTarget(openAnim, to_open_media);
-                            Storyboard.SetTargetProperty(openAnim, new PropertyPath(MediaElement.OpacityProperty));
-                            last_media_shown = to_open_media;
-                        }
-
-                        (item.MediaElement as MediaElement).Play();
-                        found = true;
-                        break;
-                    }
-                }
-
-                bool anim = false;
-                if (!found && last_media_shown.Opacity > 0d)
-                {
-                    closeAnim = new DoubleAnimation(1d, 0d, new Duration(new TimeSpan(0, 0, 1)));
-                    closeAnim.Completed += animation_Completed;
-                    Storyboard.SetTarget(closeAnim, last_media_shown);
-                    Storyboard.SetTargetProperty(closeAnim, new PropertyPath(MediaElement.OpacityProperty));
-                    anim = true;
-                    animation.Children.Add(closeAnim);
-                }
-
-                if (closeAnim != null && openAnim != null)
-                {
-                    anim = true;
-                    animation.Children.Add(closeAnim);
-                }
-                if (openAnim != null)
-                {
-                    anim = true;
-                    animation.Children.Add(openAnim);
-                }
-
-                if (anim)
-                    animation.Begin();*/
             }
         }
 
@@ -193,23 +136,24 @@ namespace OssMultiBanda
         {
             foreach (var item in _OATeSettings.MediaFiles)
             {
-                MediaElement mediaElem = (item.MediaElement as MediaElement);
-                if ( mediaElem.Opacity > 0d)
+                Border mediaElem = (item.UI_Element as Border);
+                if (mediaElem.Opacity > 0d)
                     return true;
             }
             return false;
         }
 
-        //protected void animation_Completed(object sender, EventArgs e)
-        //{
-        //    foreach (var item in _OATeSettings.MediaFiles)
-        //    {
-        //        MediaElement element = (item.MediaElement as MediaElement);
-        //        if (element == last_media_shown && element.Opacity == 1d)
-        //            element.Play();
-        //        else
-        //            element.Opacity = 0d;
-        //    }
-        //}
+        protected void animation_Completed(object sender, EventArgs e)
+        {
+            foreach (var item in _OATeSettings.MediaFiles)
+            {
+                Border element = (item.UI_Element as Border);
+                if (element != last_media_shown && element.Visibility != System.Windows.Visibility.Hidden)
+                {
+                    element.Opacity = 0d;
+                    element.Visibility = System.Windows.Visibility.Hidden;
+                }
+            }
+        }
     }
 }
