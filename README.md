@@ -6,6 +6,7 @@ It is also possible to attach a camera to have a double video split effect.
 
 Folder structure: 
 
+```
 └── OssMultiBandaNewVersion
     ├── Configurations
     │   ├── CRAB
