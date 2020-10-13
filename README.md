@@ -1,7 +1,9 @@
-# LaboratorioDidatticoTeramo
+# Osservazioni Multi-Banda
 
-There are tree main folder in the project. The "Configurations" contains the examples of astronomical objects to show to the user. 
+The "Configurations" contains the examples of astronomical objects to show to the user. 
+
 The main application is in the folder "OsservazioniMultiBanda" which must be compiled with Visual Studio (solution file within the the same folder). 
+
 It is also possible to attach a camera to have a double video split effect. 
 
 Folder structure: 
