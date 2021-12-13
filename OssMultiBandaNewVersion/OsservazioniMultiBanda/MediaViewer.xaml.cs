@@ -44,7 +44,7 @@ namespace OssMultiBanda
             _OATeSettings = oATeSettings;
         }
 
-        public void AddElement(OATeMedia item)
+        public void AddElement(OATeMedia item, string description)
         {
             if (item.UI_Element != null)
             {
@@ -60,9 +60,18 @@ namespace OssMultiBanda
             brush.Stretch = Stretch.Uniform;
             mediaElem.Background = brush;
             mediaElem.Name = "MediaElement_" + LayoutRoot.Children.Count + 1;
+            TextBlock textBlock = new TextBlock();
+            textBlock.TextWrapping = TextWrapping.Wrap;
+            textBlock.Text = description + "       ";
+            textBlock.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+            textBlock.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+            textBlock.Foreground = Brushes.White;
+            textBlock.FontSize = 32;
+            mediaElem.Child = textBlock;
             if (!System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory() + "/" + item.MediaUri))
                 throw new Exception("Not existing media: " + item.MediaUri.ToString());
             LayoutRoot.Children.Add(mediaElem);
+            
             item.UI_Element = mediaElem;
         }
 

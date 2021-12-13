@@ -1,0 +1,13 @@
+<OATeSettings Barra="spettro.png" Puntatore="Puntatore.png" xmlns="clr-namespace:OssMultiBanda;assembly=OssMultiBanda" Step="10" AnimationMilliseconds="300"  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<OATeSettings.MediaFiles>
+<scg:List x:TypeArguments="OATeMedia" Capacity="16">
+<OATeMedia FromValue="0" ToValue="0.14" MediaUri="3C 305/3c305_radio.jpg" />
+<OATeMedia FromValue="0.14" MediaUri="3C 305/black.jpg" ToValue="0.34" />
+<OATeMedia FromValue="0.34" MediaUri="3C 305/black.jpg" ToValue="0.49" />
+<OATeMedia FromValue="0.49" ToValue="0.507" MediaUri="3C 305/3c305_opt.jpg" />
+<OATeMedia FromValue="0.507" ToValue="0.59" MediaUri="3C 305/black.jpg" />
+<OATeMedia FromValue="0.59" ToValue="0.79" MediaUri="3C 305/3c305_xray.jpg" />
+<OATeMedia FromValue="0.79" ToValue="1" MediaUri="3C 305/black.jpg" /></scg:List>
+</OATeSettings.MediaFiles>
+</OATeSettings>
+

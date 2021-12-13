@@ -62,6 +62,13 @@ namespace OssMultiBanda
             set { _PuntatoreFisso = value; }
         }
 
+        private string _Description = "";
+        public string Description
+        {
+            get { return _Description; }
+            set { _Description = value; }
+        }
+
         private List<OATeMedia> _MediaFiles = new List<OATeMedia>();
         public List<OATeMedia> MediaFiles
         {

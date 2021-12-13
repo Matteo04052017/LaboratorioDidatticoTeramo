@@ -77,6 +77,8 @@ namespace OssMultiBanda
                 {
                     OATeSettings newsett = new OATeSettings();
                     if (OATeSettings.TryLoadSettingsNoUi(settings, out newsett))
+                        if (string.IsNullOrEmpty(newsett.Description))
+                            newsett.Description = Path.GetFileName(item);
                         _ListOATeSettings.Add(newsett);
                 }
             }
@@ -150,7 +152,7 @@ namespace OssMultiBanda
             ImageSource source = new BitmapImage(new Uri(_OATeSettings.Barra, UriKind.RelativeOrAbsolute));
             border_barra.Background = new ImageBrush(source);
             foreach (var item in _OATeSettings.MediaFiles)
-                _MediaViewer.AddElement(item);
+                _MediaViewer.AddElement(item, _OATeSettings.Description);
 
             UserStateVisualizer._OATeSettings = this._OATeSettings;
             UserStateVisualizer.ValueReached += UserStateVisualizer_ValueReached;
@@ -176,7 +178,7 @@ namespace OssMultiBanda
                 CameraViewer.Show();
             }
 
-            if (e.Key == Key.F)
+            if (e.Key == Key.B)
             {
                 int index = ListOATeSettings.IndexOf(_OATeSettings);
                 if ((index + 1) < ListOATeSettings.Count)
@@ -188,7 +190,7 @@ namespace OssMultiBanda
                 //border_barra.Background = new ImageBrush(source);
                 _MediaViewer._OATeSettings = _OATeSettings;
                 foreach (var item in _OATeSettings.MediaFiles)
-                    _MediaViewer.AddElement(item);
+                    _MediaViewer.AddElement(item, _OATeSettings.Description);
 
                 UserStateVisualizer._OATeSettings = this._OATeSettings;
                 UserStateVisualizer.StartPoint();
@@ -219,7 +221,7 @@ namespace OssMultiBanda
                     border_barra.Background = new ImageBrush(source);
                     UserStateVisualizer._OATeSettings = _OATeSettings;
                     foreach (var item in _OATeSettings.MediaFiles)
-                        _MediaViewer.AddElement(item);
+                        _MediaViewer.AddElement(item, _OATeSettings.Description);
                 }
             }
         }
